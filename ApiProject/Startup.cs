@@ -1,15 +1,16 @@
+using AutoMapper;
+using DataAccess.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Services.ClienteServices;
+using Services.ListaProductosOrdenServices;
+using Services.OrdenServices;
+using Services.ProductoServices;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ApiProject
 {
@@ -25,6 +26,20 @@ namespace ApiProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //AutoMapper
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            //DbContext
+            services.AddDbContext<SistemaVentasContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("SistemaPruebaConnection"))
+            );
+
+            services.AddScoped<SistemaVentasContext>();
+            services.AddScoped<IClienteServices, ClienteServices>();
+            services.AddScoped<IListaProductoOrdenServices, ListaProductoOrdenServices>();
+            services.AddScoped<IOrdenServices, OrdenServices>();
+            services.AddScoped<IProductoServices, ProductoServices>();
+
             services.AddControllers();
         }
 

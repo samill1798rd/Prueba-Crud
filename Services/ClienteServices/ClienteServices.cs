@@ -28,6 +28,7 @@ namespace Services.ClienteServices
 
         public async Task DeleteClienteAsync(int clientesId)
         {
+
             var result = await GetCliente(clientesId);
 
             if (result != null)
@@ -35,6 +36,8 @@ namespace Services.ClienteServices
                 _dbConxtext.Clientes.Remove(result);
                 await _dbConxtext.SaveChangesAsync();
             }
+
+
         }
 
         public async Task<Clientes> GetCliente(int clientesId)
@@ -50,7 +53,7 @@ namespace Services.ClienteServices
 
         public async Task<Clientes> UpdateCliente(Clientes cliente)
         {
-            var result = await GetCliente(cliente.IdCliente); 
+            var result = await GetCliente(cliente.IdCliente);
 
             if (result != null)
             {
@@ -70,6 +73,6 @@ namespace Services.ClienteServices
 
         }
 
-  
+
     }
 }
