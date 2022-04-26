@@ -1,15 +1,15 @@
 ﻿using Model.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Services.OrdenServices
 {
     public interface IOrdenServices
     {
-        IEnumerable<Orden> GetOrden();
-        Orden GetOrdenById(int OrdenId);
-        void InsertOrden(Orden orden);
-        void UpdateOrden(Orden orden);
-        void DeleteOrden(int OrdenId);
-        void SaveChanges();
+        Task<IEnumerable<Orden>> GetOrdenList();
+        Task<Orden> GetOrden(int ordensId);
+        Task<Orden> AddOrden(Orden orden);
+        Task<Orden> UpdateOrden(Orden orden);
+        Task DeleteOrdenAsync(int ordenId);
     }
 }

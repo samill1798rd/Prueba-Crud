@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Services.ClienteServices
 {
@@ -17,36 +18,56 @@ namespace Services.ClienteServices
             _dbConxtext = dbConxtext;
         }
 
-        
-        public void DeleteCliente(int ClienteId)
+        public async Task<Clientes> AddCliente(Clientes cliente)
         {
-            var clienteObj = _dbConxtext.Clientes.Find(ClienteId);
-            _dbConxtext.Clientes.Remove(clienteObj);
+            var result = await _dbConxtext.Clientes.AddAsync(cliente);
+            await _dbConxtext.SaveChangesAsync();
+
+            return result.Entity;
         }
 
-        public IEnumerable<Clientes> GetCliente()
+        public async Task DeleteClienteAsync(int clientesId)
         {
-            return _dbConxtext.Clientes.ToList();
+            var result = await GetCliente(clientesId);
+
+            if (result != null)
+            {
+                _dbConxtext.Clientes.Remove(result);
+                await _dbConxtext.SaveChangesAsync();
+            }
         }
 
-        public Clientes GetClienteById(int ClienteId)
+        public async Task<Clientes> GetCliente(int clientesId)
         {
-            return _dbConxtext.Clientes.Find(ClienteId);
+            return await _dbConxtext.Clientes
+                 .FirstOrDefaultAsync(e => e.IdCliente == clientesId);
         }
 
-        public void InsertCliente(Clientes cliente)
+        public async Task<IEnumerable<Clientes>> GetClientesList()
         {
-            _dbConxtext.Clientes.Add(cliente);
+            return await _dbConxtext.Clientes.ToListAsync();
         }
 
-        public void SaveChanges()
+        public async Task<Clientes> UpdateCliente(Clientes cliente)
         {
-            _dbConxtext.SaveChanges();
-        }
+            var result = await GetCliente(cliente.IdCliente); 
 
-        public void UpdateCliente(Clientes cliente)
-        {
-            throw new NotImplementedException();
+            if (result != null)
+            {
+                result.IdCliente = cliente.IdCliente;
+                result.Nombre = cliente.Nombre;
+                result.Cedula = cliente.Cedula;
+                result.FechaCreacion = cliente.FechaCreacion;
+                result.IsActive = cliente.IsActive;
+
+
+                await _dbConxtext.SaveChangesAsync();
+
+                return result;
+            }
+
+            return null;
+
         }
 
   

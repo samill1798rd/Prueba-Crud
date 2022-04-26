@@ -1,8 +1,8 @@
 ﻿using DataAccess.Data;
+using Microsoft.EntityFrameworkCore;
 using Model.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace Services.OrdenServices
 {
@@ -16,35 +16,54 @@ namespace Services.OrdenServices
             _dbConxtext = dbConxtext;
         }
 
-        public void DeleteOrden(int OrdenId)
+        public async Task<Orden> AddOrden(Orden orden)
         {
-            var ordenObj = _dbConxtext.Orden.Find(OrdenId);
-            _dbConxtext.Orden.Remove(ordenObj);
+            var result = await _dbConxtext.Orden.AddAsync(orden);
+            await _dbConxtext.SaveChangesAsync();
+
+            return result.Entity;
         }
 
-        public IEnumerable<Orden> GetOrden()
+        public async Task DeleteOrdenAsync(int ordenId)
         {
-            return _dbConxtext.Orden.ToList();
+            var result = await GetOrden(ordenId);
+
+            if (result != null)
+            {
+                _dbConxtext.Orden.Remove(result);
+                await _dbConxtext.SaveChangesAsync();
+            }
         }
 
-        public Orden GetOrdenById(int OrdenId)
+        public async Task<Orden> GetOrden(int ordensId)
         {
-            return _dbConxtext.Orden.Find(OrdenId);
+            return await _dbConxtext.Orden
+                 .FirstOrDefaultAsync(e => e.IdOrden == ordensId);
         }
 
-        public void InsertOrden(Orden orden)
+        public async Task<IEnumerable<Orden>> GetOrdenList()
         {
-            _dbConxtext.Orden.Add(orden);
+            return await _dbConxtext.Orden.ToListAsync();
         }
 
-        public void SaveChanges()
+        public async Task<Orden> UpdateOrden(Orden orden)
         {
-            _dbConxtext.SaveChanges();
-        }
+            var result = await GetOrden(orden.IdOrden);
 
-        public void UpdateOrden(Orden orden)
-        {
-            throw new NotImplementedException();
+            if (result != null)
+            {
+                result.IdOrden = orden.IdOrden;
+                result.OrdenName = orden.OrdenName;
+                result.FechaCreacion = orden.FechaCreacion;
+                result.IsActive = orden.IsActive;
+
+
+                await _dbConxtext.SaveChangesAsync();
+
+                return result;
+            }
+
+            return null;
         }
     }
 }

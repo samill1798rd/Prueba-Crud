@@ -1,8 +1,10 @@
 ﻿using DataAccess.Data;
+using Microsoft.EntityFrameworkCore;
 using Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Services.ProductoServices
 {
@@ -15,35 +17,58 @@ namespace Services.ProductoServices
         {
             _dbConxtext = dbConxtext;
         }
-        public void DeleteProducto(int ProductoId)
+
+        public async Task<Productos> AddProductos(Productos productos)
         {
-            var productoObj = _dbConxtext.Productos.Find(ProductoId);
-            _dbConxtext.Productos.Remove(productoObj);
+            var result = await _dbConxtext.Productos.AddAsync(productos);
+            await _dbConxtext.SaveChangesAsync();
+
+            return result.Entity;
         }
 
-        public IEnumerable<Productos> GetProducto()
+        public async Task DeleteProductosAsync(int productosId)
         {
-            return _dbConxtext.Productos.ToList();
+            var result = await GetProductos(productosId);
+
+            if (result != null)
+            {
+                _dbConxtext.Productos.Remove(result);
+                await _dbConxtext.SaveChangesAsync();
+            }
         }
 
-        public Productos GetProductoById(int ProductoId)
+        public async Task<Productos> GetProductos(int productosId)
         {
-            return _dbConxtext.Productos.Find(ProductoId);
+            return await _dbConxtext.Productos
+                  .FirstOrDefaultAsync(e => e.IdProducto == productosId);
         }
 
-        public void InsertProducto(Productos Producto)
+        public async Task<IEnumerable<Productos>> GetProductosList()
         {
-            _dbConxtext.Productos.Add(Producto);
+            return await _dbConxtext.Productos.ToListAsync();
         }
 
-        public void SaveChanges()
+        public async Task<Productos> UpdateProductos(Productos productos)
         {
-            _dbConxtext.SaveChanges();
-        }
 
-        public void UpdateProducto(Productos Producto)
-        {
-            throw new NotImplementedException();
+            var result = await GetProductos(productos.IdProducto);
+
+            if (result != null)
+            {
+                result.IdProducto = productos.IdProducto;
+                result.NombreProducto = productos.NombreProducto;
+                result.FechaEntrada = productos.FechaEntrada;
+                result.Cantidad = productos.Cantidad;
+                result.IsActive = productos.IsActive;
+
+
+                await _dbConxtext.SaveChangesAsync();
+
+                return result;
+            }
+
+            return null;
+
         }
     }
 }
