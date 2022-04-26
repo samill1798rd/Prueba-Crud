@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Model.Entities;
 using Services.ClienteServices;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ApiProject.Controllers
@@ -26,7 +27,7 @@ namespace ApiProject.Controllers
         {
             var clientesList = await _clienteServices.GetClientesList();
 
-            var datosVm = _mapper.Map<ClientesDto>(clientesList);
+            var datosVm = _mapper.Map<IEnumerable<ClientesDto>>(clientesList);
 
             return Ok(datosVm);
         }

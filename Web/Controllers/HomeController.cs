@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services.ClienteServices;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Web.Models;
 
 namespace Web.Controllers
@@ -23,7 +19,7 @@ namespace Web.Controllers
 
         public IActionResult Index()
         {
-            var test = _clienteServices.GetCliente();
+            //var test = _clienteServices.GetCliente();
             return View();
         }
 
