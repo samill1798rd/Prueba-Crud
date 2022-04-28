@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Services.ClienteServices;
+using System;
+using AutoMapper;
 
 namespace Web
 {
@@ -21,6 +23,8 @@ namespace Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //AutoMapper
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             //DbContext
             services.AddDbContext<SistemaVentasContext>(options => 
@@ -56,7 +60,7 @@ namespace Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}");
             });
         }
     }

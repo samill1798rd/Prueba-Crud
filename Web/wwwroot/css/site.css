@@ -62,10 +62,114 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
-.footer {
+/*.footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+  line-height: 60px;*/ /* Vertically center the text there */
+/*}*/
+
+
+.padding-div {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.single-service {
+    position: relative;
+    text-align: center;
+    margin-bottom: 50px;
+    background-color: #FFFFFF;
+    -webkit-transition: .3s;
+    transition: .3s;
+    padding: 30px 30px;
+    box-shadow: 0px 5px 10px 0px rgb(0 0 0 / 16%);
+    height: 250px;
+    border-radius: 25px;
+    
+}
+
+    .single-service:before {
+        position: absolute;
+        width: 0;
+        height: 0;
+        background-color: #FFFFFF;
+        left: 0;
+        top: 0;
+        content: "";
+        -webkit-transition: .3s;
+        transition: .3s
+    }
+
+    .single-service:after {
+        position: absolute;
+        width: 0;
+        height: 0;
+        background-color: #FFFFFF;
+        right: 0;
+        bottom: 0;
+        content: "";
+        -webkit-transition: .3s;
+        transition: .3s
+    }
+
+    .single-service:hover:after,
+    .single-service:hover:before {
+        width: 50%;
+        height: 2px;
+        -webkit-transition: .3s;
+        transition: .3s
+    }
+
+    .single-service:hover {
+        box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, 0.10)
+    }
+
+    .single-service i.fa {
+        font-size: 70px;
+        color: #24609F;
+        width: 60px;
+        height: 60px;
+        margin-left: -10px;
+        margin-bottom: 30px;
+        -webkit-transition: .3s;
+        transition: .3s
+    }
+
+    .single-service i.fas {
+        font-size: 70px;
+        color: #24609F;
+        width: 60px;
+        height: 60px;
+        margin-left: -10px;
+        margin-bottom: 30px;
+        -webkit-transition: .3s;
+        transition: .3s
+    }
+
+    .single-service i.far {
+        font-size: 70px;
+        color: #24609F;
+        width: 60px;
+        height: 60px;
+        margin-left: -10px;
+        margin-bottom: 30px;
+        -webkit-transition: .3s;
+        transition: .3s
+    }
+
+
+    .single-service h2 {
+        font-size: 21px;
+        font-weight: 400;
+        margin-bottom: 15px;
+        color: #e3b24f;
+            text-transform: capitalize;
+
+    }
+
+.formatBox{
+    cursor:pointer;
+    margin-left:20px;
+    margin-right:20px;
 }

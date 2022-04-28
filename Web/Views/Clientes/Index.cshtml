@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Realizar Pagos";
+    ViewData["Modulo"] = "Pagos de Servicios";
+    //ViewData["IdRol"] = "1";
+
+}
+
+
+<div class="card">
+    <div class="card-header border-0">
+        <h2 class="card-title">Seleccione la opcion</h2>
+    </div>
+
+    <div class="card-body">
+
+
+        @*<div class="container">
+            <div class="row">
+                <div class="col single-service padding-div services" data-id="1" style="border:1px solid gray;">
+                    <div class="formatBox" style="text-align: center;">
+                        <h3>Crear Cliente</h3>
+                        <img src="~/assets/img/mainMenu/cliente.png" width="150px" height="150px" alt="" />
+                    </div>
+                </div>
+
+                <div class="col single-service padding-div services" data-id="2" style="border:1px solid gray;">
+                    <div class="formatBox" style="text-align: center;">
+                        <h3>Crear Productos</h3>
+                        <img src="~/assets/img/mainMenu/productos.png" width="200px" height="150px" alt="" />
+                    </div>
+                </div>
+
+
+                <div class="col single-service padding-div services" data-id="3" style="border:1px solid gray;">
+                    <div class="formatBox" style="text-align: center;">
+                        <h3>Crear Orden</h3>
+                        <img src="~/assets/img/mainMenu/orden.png" width="150px" height="150px" alt="" />
+                    </div>
+                </div>
+
+            </div>
+
+        </div>*@
+    
+
+    </div>
+
+    <div class="card-footer py-4">
+
+        @*<a href="@Url.Action("Index","Home")" class="btn btn-success float-right">Inicio</a>*@
+        @*<button type="button" data-toggle="modal" data-target="#myModal">Launch modal</button>*@
+    </div>
+</div>
+
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#VentanaModal">Large modal</button>*@
+
+<div id="ListaServicios">
+
+</div>
+
+
+
+
+
+@section scripts
+        {
+
+    <script src="~/js/pagoServicioIndex.js"></script>
+
+    <script>
+        let GetServicosById = '@Url.Action("GetServicoById", "PagosServicios")';
+    </script>
+
+}

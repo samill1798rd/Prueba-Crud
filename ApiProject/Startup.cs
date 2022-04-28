@@ -26,6 +26,23 @@ namespace ApiProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy("MainPolicy",
+                      builder =>
+                      {
+                          builder
+                                 .AllowAnyHeader()
+                                 .AllowAnyMethod()
+                                 .AllowCredentials();
+
+                          //TODO: remove this line for production
+                          builder.SetIsOriginAllowed(x => true);
+                      });
+            });
+
+            #endregion
             //AutoMapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -56,6 +73,8 @@ namespace ApiProject
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors("MainPolicy");
 
             app.UseEndpoints(endpoints =>
             {
