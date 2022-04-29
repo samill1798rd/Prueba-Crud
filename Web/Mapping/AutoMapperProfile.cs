@@ -1,8 +1,8 @@
-﻿using ApiProject.Dtos;
+﻿using Web.ViewModel;
 using AutoMapper;
 using Model.Entities;
 
-namespace ApiProject.Mapping
+namespace Web.Mapping
 {
     public class AutoMapperProfile : Profile
     {

@@ -1,74 +1,106 @@
-﻿@{
-    ViewData["Title"] = "Realizar Pagos";
-    ViewData["Modulo"] = "Pagos de Servicios";
-    //ViewData["IdRol"] = "1";
+﻿@model IEnumerable<Web.ViewModel.ClientesDto>
+
+@{
+    ViewData["Title"] = "Modulo Clientes";
+    ViewData["Modulo"] = "Modulo Clientes";
 
 }
 
 
 <div class="card">
     <div class="card-header border-0">
-        <h2 class="card-title">Seleccione la opcion</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="card-title">Seleccione la opcion</h2>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="float-right btn btn-primary" data-toggle="modal" data-target="#modalCreateClient">
+                    Crear Cliente
+                </button>
+
+            </div>
+        </div>
     </div>
 
     <div class="card-body">
 
+        <div class="panel-body">
+            <div class="dataTable_wrapper">
+                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Cedula</th>
+                            @*<th>Fecha Creacion</th>*@
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
 
-        @*<div class="container">
-            <div class="row">
-                <div class="col single-service padding-div services" data-id="1" style="border:1px solid gray;">
-                    <div class="formatBox" style="text-align: center;">
-                        <h3>Crear Cliente</h3>
-                        <img src="~/assets/img/mainMenu/cliente.png" width="150px" height="150px" alt="" />
-                    </div>
-                </div>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Nombre</td>
+                                <td>@item.Apellido</td>
+                                <td>@item.Cedula</td>
+                                @*<td>@item.FechaCreacion</td>*@
+                                <td>
+                                    <a role="button" class="btn btn-success" data-edit-id="@item.IdCliente" data-toggle="modal">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a role="button" class="btn btn-danger btnDelete" data-delete-id="@item.IdCliente">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
 
-                <div class="col single-service padding-div services" data-id="2" style="border:1px solid gray;">
-                    <div class="formatBox" style="text-align: center;">
-                        <h3>Crear Productos</h3>
-                        <img src="~/assets/img/mainMenu/productos.png" width="200px" height="150px" alt="" />
-                    </div>
-                </div>
 
-
-                <div class="col single-service padding-div services" data-id="3" style="border:1px solid gray;">
-                    <div class="formatBox" style="text-align: center;">
-                        <h3>Crear Orden</h3>
-                        <img src="~/assets/img/mainMenu/orden.png" width="150px" height="150px" alt="" />
-                    </div>
-                </div>
-
+                    <tbody>
+                </table>
             </div>
+        </div>
 
-        </div>*@
-    
+        <div class="card-footer py-4">
 
+
+        </div>
     </div>
 
-    <div class="card-footer py-4">
 
-        @*<a href="@Url.Action("Index","Home")" class="btn btn-success float-right">Inicio</a>*@
-        @*<button type="button" data-toggle="modal" data-target="#myModal">Launch modal</button>*@
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalCreateClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crear Cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h1>Hi</h1>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-
-@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#VentanaModal">Large modal</button>*@
-
-<div id="ListaServicios">
-
-</div>
 
 
 
-
-
-@section scripts
+    @section scripts
         {
 
-    <script src="~/js/pagoServicioIndex.js"></script>
+        <script src="~/js/clienteView.js"></script>
 
-    <script>
-        let GetServicosById = '@Url.Action("GetServicoById", "PagosServicios")';
-    </script>
+        <script>
+            let getClientes = '@Url.Action("GetDataTableCliente", "Clientes")';
+        </script>
 
-}
+
+    }

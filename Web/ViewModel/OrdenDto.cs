@@ -1,4 +1,4 @@
-﻿namespace ApiProject.Dtos
+﻿namespace Web.ViewModel
 {
     public class OrdenDto
     {

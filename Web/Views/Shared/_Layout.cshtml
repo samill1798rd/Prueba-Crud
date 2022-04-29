@@ -1,20 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@*@using Web.Areas.Identity.Data
 
-@inject SignInManager<AplicationUserWebUser> SignInManager
-@inject UserManager<AplicationUserWebUser> UserManager*@
-
-@{
-//var Currentuser = UserManager.FindByNameAsync(@UserManager.GetUserName(User));
-}
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Fast Pay">
-    <meta name="author" content="Fast Pay">
+    <meta name="description" content="Prueba Exam">
+    <meta name="author" content="Prueba Exam">
     <title>Prueba Exam - @ViewData["Title"]</title>
     <!-- Favicon -->
     <link rel="icon" href="~/assets/img/brand/favicon.png" type="image/png">
@@ -38,8 +31,8 @@
             <!-- Brand -->
             <div class="sidenav-header  align-items-center">
                 <a class="" href="javascript:void(0)">
-                    <h3>Pruebas Sistem</h3>
-                    @*<img src="~/assets/img/logo.jpeg" height="130" width="200" alt="...">*@
+                    <h3>Pruebas System</h3>
+          
                 </a>
             </div>
             <div class="navbar-inner">
@@ -48,38 +41,17 @@
                     <!-- Nav items -->
 
                     <ul class="navbar-nav">
-                        <!--<div class="container bg-primary">
-                            <div class="row">-->
-                                @*<div class="col-sm">
-                                    <h3 style="text-align: center;" class="text-white">Balance $<span id="balance"><span></h3>
-                                </div>*@
-                            <!--</div>
-                        </div>-->
 
-                
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="ni ni-single-02 text-yellow"></i>
-                                    <span class="nav-link-text">Pagos de Servicios</span>
+                                    <span class="nav-link-text">Modulo Clientes</span>
                                 </a>
                                 <a class="nav-link" href="#">
                                     <i class="ni ni-single-02 text-yellow"></i>
-                                    <span class="nav-link-text">Pagos de Servicios</span>
+                                    <span class="nav-link-text">Modulo Productos</span>
                                 </a>
-                                @*<ul>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="@Url.Action("Index","PagosServicios")">
-                                            <i class="ni ni-bullet-list-67 text-default"></i>
-                                            <span class="nav-link-text">Realizar Pagos</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="@Url.Action("HistorialTransaciones","PagosServicios")">
-                                            <i class="ni ni-bullet-list-67 text-default"></i>
-                                            <span class="nav-link-text">Historial de Pago</span>
-                                        </a>
-                                    </li>
-                                </ul>*@
+                           
                             </li>
                        
                     </ul>
@@ -213,6 +185,8 @@
     <!-- Argon JS -->
     <script src="~/assets/js/argon.js?v=1.2.0"></script>
     <script src="~/assets/js/argon.js?v=1.2.0"></script>
+    <script src="~/assets/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/assets/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

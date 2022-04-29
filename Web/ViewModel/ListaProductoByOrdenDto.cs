@@ -1,7 +1,7 @@
 ﻿using Model.Entities;
 using System;
 
-namespace ApiProject.Dtos
+namespace Web.ViewModel
 {
     public class ListaProductoByOrdenDto
     {

@@ -1,4 +1,4 @@
-﻿namespace ApiProject.Dtos
+﻿namespace Web.ViewModel
 {
     public class ClientesDto
     {
@@ -6,7 +6,6 @@
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Cedula { get; set; }
-        public int? FechaCreacion { get; set; }
-        public bool? IsActive { get; set; }
+    
     }
 }
